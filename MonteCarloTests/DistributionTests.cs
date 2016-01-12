@@ -18,6 +18,18 @@ namespace MonteCarloTests
             for (int i = 0; i < d1.Count; ++i)
                 Assert.AreEqual(res[i], 24);
         }
+
+        [Test]
+        public void DistGaussian()
+        {
+            var d1 = Distribution.InitGaussian(10, 0.5);
+
+            var mean = d1.GetMean();
+            var stdDev = d1.GetStdDeviation();
+            return;
+        }
     }
+
+
 }
 
