@@ -9,8 +9,8 @@ namespace MonteCarloTests
         [Test]
         public void MonteCarloBasic()
         {
-            var input1 = Distribution.InitGaussian(1.5, 0.31);
-            var input2 = Distribution.InitGaussian(8.5, 0.31);
+            var input1 = Distribution.InitGaussian(1.5, 0.31);  // 1.5 +-0.5  -->  [1, 2]
+            var input2 = Distribution.InitGaussian(8.5, 0.31);  // 8.5 +.0.5  -->  [8, 9]
 
             var result = Distribution.Apply(input1, input2, (x, y) => x * y);
 

@@ -92,6 +92,25 @@ namespace MonteCarlo
             return result;
         }
 
+        public int[] GetDistribution(int numDivisions)
+        {
+            double min, max, mean = GetMean(out min, out max);
+            var range = max - min;
+            var result = new int[numDivisions];
+
+            for (int i = 0; i < mItems.Length; ++i)
+            {
+                var val = mItems[i] - min;
+                var idx = (int)(val / range * numDivisions);
+                if (idx >= result.Length)
+                    idx = result.Length - 1;
+                
+                result[idx]++;
+            }
+
+            return result;
+        }
+
 
         public static Distribution Apply(Distribution d1, Func<double, double> op)
         {
@@ -123,7 +142,7 @@ namespace MonteCarlo
 
             for (int i = 0; i < result.Count; ++i)
             {
-                result[i] = result.GetRandomNormal() * stdDev + mean;
+                result[i] = result.GetRandomGaussian() * stdDev + mean;
             }
 
             return result;
@@ -152,7 +171,7 @@ namespace MonteCarlo
             return result;
         }
 
-        private double GetRandomNormal()
+        private double GetRandomGaussian()
         {
             return Math.Cos(2 * Math.PI * mRandom.NextDouble()) * Math.Sqrt(-2 * Math.Log(mRandom.NextDouble()));
         }

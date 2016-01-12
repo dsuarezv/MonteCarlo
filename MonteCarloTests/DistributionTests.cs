@@ -47,6 +47,15 @@ namespace MonteCarloTests
 
             return;
         }
+
+        [Test]
+        public void DistDistribution()
+        {
+            var d1 = Distribution.InitGaussian(10, 0.5);
+            var dist = d1.GetDistribution(50);
+
+            return;
+        }
     }
 }
 
