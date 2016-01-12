@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonteCarlo", "MonteCarlo\Mo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonteCarloTests", "MonteCarloTests\MonteCarloTests.csproj", "{11889D54-F812-4607-9DA8-DB255A75E87D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCalc", "NCalc\Evaluant.Calculator\NCalc.csproj", "{5F014003-50D8-49E0-8AFE-91D38DCCC97C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{11889D54-F812-4607-9DA8-DB255A75E87D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11889D54-F812-4607-9DA8-DB255A75E87D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11889D54-F812-4607-9DA8-DB255A75E87D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F014003-50D8-49E0-8AFE-91D38DCCC97C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F014003-50D8-49E0-8AFE-91D38DCCC97C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F014003-50D8-49E0-8AFE-91D38DCCC97C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F014003-50D8-49E0-8AFE-91D38DCCC97C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EFCC3623-29BA-45BA-A7B0-6ABD9E7910A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EFCC3623-29BA-45BA-A7B0-6ABD9E7910A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EFCC3623-29BA-45BA-A7B0-6ABD9E7910A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
