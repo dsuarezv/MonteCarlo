@@ -20,7 +20,7 @@ namespace MonteCarloTests
         }
 
         [Test]
-        public void DistGaussian()
+        public void DistInitGaussian()
         {
             var d1 = Distribution.InitGaussian(10, 0.5);
 
@@ -28,6 +28,8 @@ namespace MonteCarloTests
             var stdDev = d1.GetStdDeviation();
             return;
         }
+
+
     }
 
 

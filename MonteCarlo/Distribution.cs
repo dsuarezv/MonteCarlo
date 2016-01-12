@@ -33,11 +33,23 @@ namespace MonteCarlo
 
         public double GetMean()
         {
+            double min, max;
+            return GetMean(out min, out max);
+        }
+
+        public double GetMean(out double min, out double max)
+        {
             double result = 0;
+            min = double.MaxValue;
+            max = double.MinValue;
 
             for (int i = 0; i < mItems.Length; ++i)
             {
-                result += mItems[i];
+                var v = mItems[i];
+                result += v;
+
+                if (v < min) min = v;
+                if (v > max) max = v;
             }
 
             return result / mItems.Length;
@@ -61,6 +73,8 @@ namespace MonteCarlo
         {
             return Math.Sqrt(GetVariance());
         }
+
+       
 
 
         public static Distribution Apply(Distribution d1, Func<double, double> op)
@@ -99,7 +113,7 @@ namespace MonteCarlo
             return result;
         }
 
-        public static Distribution InitGaussianRange(double fromValue, double toValue, int size = DefaultSize)
+        public static Distribution InitGaussianFromRange(double fromValue, double toValue, int size = DefaultSize)
         {
             var d = toValue - fromValue;
             var mean = d / 2 + fromValue;
