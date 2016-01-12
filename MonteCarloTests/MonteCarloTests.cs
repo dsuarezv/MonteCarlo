@@ -16,7 +16,9 @@ namespace MonteCarloTests
 
             double min, max, mean = result.GetMean(out min, out max);
             double stdDev = result.GetStdDeviation();
-            return;
+
+            Utils.AssertIsInRange(stdDev, 2.69, 0.2);
+            Utils.AssertIsInRange(mean, 12.73, 0.2);
         }
     }
 }

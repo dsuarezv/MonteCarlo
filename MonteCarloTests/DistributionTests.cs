@@ -26,7 +26,9 @@ namespace MonteCarloTests
 
             var mean = d1.GetMean();
             var stdDev = d1.GetStdDeviation();
-            return;
+
+            Utils.AssertIsInRange(mean, 10, 0.05);
+            Utils.AssertIsInRange(stdDev, 0.5, 0.05);
         }
 
         [Test]
@@ -40,6 +42,8 @@ namespace MonteCarloTests
             var ninetyFivePercent = percentiles[94];
             var diff = ninetyFivePercent - fivePercent;
             var range = diff / 2;
+
+
 
             return;
         }
