@@ -29,9 +29,20 @@ namespace MonteCarloTests
             return;
         }
 
+        [Test]
+        public void DistPercentiles()
+        {
+            var d1 = Distribution.InitGaussian(10, 0.5);
 
+            var percentiles = d1.GetPercentiles();
+
+            var fivePercent = percentiles[4];
+            var ninetyFivePercent = percentiles[94];
+            var diff = ninetyFivePercent - fivePercent;
+            var range = diff / 2;
+
+            return;
+        }
     }
-
-
 }
 

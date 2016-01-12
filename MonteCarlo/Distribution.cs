@@ -74,7 +74,23 @@ namespace MonteCarlo
             return Math.Sqrt(GetVariance());
         }
 
-       
+        public double[] GetPercentiles()
+        {
+            var sorted = (double[])mItems.Clone();
+            Array.Sort(sorted);
+
+            int numSteps = 100;
+            int step = sorted.Length / numSteps;
+
+            var result = new double[numSteps];
+
+            for (int i = 0; i < numSteps; ++i)
+            {
+                result[i] = sorted[i * step];
+            }
+
+            return result;
+        }
 
 
         public static Distribution Apply(Distribution d1, Func<double, double> op)
