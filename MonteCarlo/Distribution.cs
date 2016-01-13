@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace MonteCarlo
 {
-    public class Distribution
+    public class Distribution: IEnumerable
     {
         private const int DefaultSize = 5000;
 
@@ -22,6 +23,10 @@ namespace MonteCarlo
             get { return mItems.Length; }
         }
 
+        public double[] RawItems
+        {
+            get { return mItems; }
+        }
 
         public Distribution(): this(DefaultSize) { }
 
@@ -29,6 +34,7 @@ namespace MonteCarlo
         {
             mItems = new double[initialSize];
         }
+
 
 
         public double GetMean()
@@ -39,20 +45,25 @@ namespace MonteCarlo
 
         public double GetMean(out double min, out double max)
         {
+            return GetMean(out min, out max, mItems);
+        }
+
+        public static double GetMean(out double min, out double max, double[] items)
+        {
             double result = 0;
             min = double.MaxValue;
             max = double.MinValue;
 
-            for (int i = 0; i < mItems.Length; ++i)
+            for (int i = 0; i < items.Length; ++i)
             {
-                var v = mItems[i];
+                var v = items[i];
                 result += v;
 
                 if (v < min) min = v;
                 if (v > max) max = v;
             }
 
-            return result / mItems.Length;
+            return result / items.Length;
         }
 
         public double GetVariance()
@@ -94,17 +105,22 @@ namespace MonteCarlo
 
         public int[] GetDistribution(int numDivisions)
         {
-            double min, max, mean = GetMean(out min, out max);
+            return GetDistribution(numDivisions, mItems);
+        }
+
+        public static int[] GetDistribution(int numDivisions, double[] items)
+        {
+            double min, max, mean = GetMean(out min, out max, items);
             var range = max - min;
             var result = new int[numDivisions];
 
-            for (int i = 0; i < mItems.Length; ++i)
+            for (int i = 0; i < items.Length; ++i)
             {
-                var val = mItems[i] - min;
+                var val = items[i] - min;
                 var idx = (int)(val / range * numDivisions);
                 if (idx >= result.Length)
                     idx = result.Length - 1;
-                
+
                 result[idx]++;
             }
 
@@ -176,10 +192,56 @@ namespace MonteCarlo
             return Math.Cos(2 * Math.PI * mRandom.NextDouble()) * Math.Sqrt(-2 * Math.Log(mRandom.NextDouble()));
         }
 
-        private double GetRandomItem()
+        internal double GetRandomItem()
         {
             return this[mRandom.Next(Count)];
         }
+
+
+        // __ IEnumerable ____________________________________________________________
+
+
+        public IEnumerator GetEnumerator()
+        {
+            return new RandomDistributionIterator(this);
+        }
+
+    }
+
+
+
+
+    public class RandomDistributionIterator: IEnumerator
+    {
+        private Distribution mTarget;
+        private int mCurrent = -1;
+
+        internal RandomDistributionIterator(Distribution target)
+        {
+            mTarget = target;
+        }
+
+
+        public bool MoveNext()
+        {
+            ++mCurrent;
+
+            return (mCurrent < mTarget.Count);
+        }
+
+        public void Reset()
+        {
+            mCurrent = -1;
+        }
+                
+        public object Current
+        {
+            get
+            {
+                return mTarget.GetRandomItem();
+            }
+        }
+
     }
 }
 
