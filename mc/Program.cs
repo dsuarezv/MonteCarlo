@@ -9,20 +9,16 @@ namespace mc
     {
         public static void Main(string[] args)
         {
-            //var xr = Distribution.InitGaussian(10, 0.5);
-            var xr = Distribution.InitConstant(10);
+            var in1 = new ModelInput("in1") { Distribution = Distribution.InitGaussian(10, 0.31) };
+            var in2 = new ModelInput("in2") { Distribution = Distribution.InitGaussian(3, 0.31) };
+            var op1 = new ModelFormula("op1") { Formula = "in1 * in2" };
 
-            Console.WriteLine("Input:");
-            PrintDistroChart(xr.RawItems, 20, 40);
-
-            var e = new Expression("xr * const", EvaluateOptions.IterateParameters | EvaluateOptions.IgnoreCase);
-            e.Parameters["xr"] = xr;
-            e.Parameters["const"] = 5;
-
-            var result = (List<object>)e.Evaluate();
+            var model = new Model();
+            model.Add(in1, in2, op1);
+            model.Solve();
 
             Console.WriteLine("Result:");
-            PrintDistroChart(ModelFormula.GetDoubleArray(result), 20, 40);
+            PrintDistroChart(op1.Output.RawItems, 20, 40);
         }
 
 
