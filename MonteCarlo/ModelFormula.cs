@@ -11,7 +11,7 @@ namespace MonteCarlo
 
         private ICollection<string> mInputs;
 
-        public ModelFormula()
+        public ModelFormula(string name): base(name)
         {
         }
 

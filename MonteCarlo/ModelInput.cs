@@ -8,7 +8,7 @@ namespace MonteCarlo
         public Distribution Distribution { get; set; } 
 
 
-        public ModelInput()
+        public ModelInput(string name): base(name)
         {
      
         }
@@ -16,6 +16,9 @@ namespace MonteCarlo
 
         public override void Solve(Model model)
         {
+            if (Distribution == null)
+                throw new ArgumentNullException("Input distribution has not been initialized");
+            
             Output = Distribution;
         }
 

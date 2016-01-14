@@ -7,8 +7,7 @@ namespace MonteCarlo
     {
         private Distribution mOutput;
 
-        public string Name { get; set; }
-        public string Alias { get; set; }
+        public string Name { get; }
 
         public Distribution Output
         {
@@ -16,8 +15,9 @@ namespace MonteCarlo
             protected set { mOutput = value; }
         }
 
-        public ModelObject()
+        public ModelObject(string name)
         {
+            Name = name;
         }
 
         public abstract void Solve(Model model);

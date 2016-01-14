@@ -23,6 +23,9 @@ namespace MonteCarlo
 
         public void Add(ModelObject obj)
         {
+            if (obj == null)
+                throw new ArgumentException("Model: cannot add a null modelObject");
+            
             mObjects.Add(obj.Name, obj);
         }
 
@@ -34,18 +37,12 @@ namespace MonteCarlo
 
         private void PrepareObjectGraph()
         {
-            // Preloads the lists with inputs to accelerate the process. 
             mSolvedObjects.Clear();
             mPendingObjects.Clear();
 
             foreach (var o in mObjects.Values)
             {
                 mPendingObjects.Add(o);
-
-//                if (o is ModelInput)
-//                    mSolvedObjects.Add(o.Name, o);
-//                else
-//                    mPendingObjects.Add(o);
             }
         }
 
