@@ -7,7 +7,7 @@ namespace MonteCarlo
     {
         private Distribution mOutput;
 
-        public string Name { get; }
+        public string Name { get; private set; }
 
         public Distribution Output
         {
