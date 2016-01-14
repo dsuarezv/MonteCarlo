@@ -9,30 +9,23 @@ namespace mc
     {
         public static void Main(string[] args)
         {
-            var xr = Distribution.InitGaussian(10, 0.5);
+            //var xr = Distribution.InitGaussian(10, 0.5);
+            var xr = Distribution.InitConstant(10);
 
             Console.WriteLine("Input:");
             PrintDistroChart(xr.RawItems, 20, 40);
 
-            var e = new Expression("xr * 5", EvaluateOptions.IterateParameters | EvaluateOptions.IgnoreCase);
+            var e = new Expression("xr * const", EvaluateOptions.IterateParameters | EvaluateOptions.IgnoreCase);
             e.Parameters["xr"] = xr;
+            e.Parameters["const"] = 5;
 
             var result = (List<object>)e.Evaluate();
 
             Console.WriteLine("Result:");
-            PrintDistroChart(GetDoubleArray(result), 20, 40);
+            PrintDistroChart(ModelFormula.GetDoubleArray(result), 20, 40);
         }
 
 
-        private static double[] GetDoubleArray(List<object> objectList)
-        {
-            double[] result = new double[objectList.Count];
-
-            for (int i = 0; i < objectList.Count; ++i) 
-                result[i] = (double)objectList[i];
-
-            return result;
-        }
 
         private static void PrintDistroChart(double[] items, int numDivisions = 25, int maxColumns = 80)
         {

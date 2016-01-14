@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MonteCarlo
 {
@@ -13,13 +14,13 @@ namespace MonteCarlo
         }
 
 
-        public override Distribution GetOutput()
+        public override void Solve(Model model)
         {
-            return Distribution;
+            Output = Distribution;
         }
 
 
-        public override string[] GetInputNames()
+        public override ICollection<string> GetNeededInputs()
         {
             return null;
         }

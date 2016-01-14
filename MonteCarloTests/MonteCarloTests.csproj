@@ -32,11 +32,15 @@
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="NCalc">
+      <HintPath>..\packages\ncalc.1.3.8\lib\NCalc.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DistributionTests.cs" />
     <Compile Include="MonteCarloTests.cs" />
     <Compile Include="Utils.cs" />
+    <Compile Include="ModelTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

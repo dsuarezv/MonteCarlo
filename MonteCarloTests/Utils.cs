@@ -1,4 +1,5 @@
 ﻿using System;
+using NUnit.Framework;
 
 namespace MonteCarloTests
 {
@@ -7,10 +8,7 @@ namespace MonteCarloTests
         public static void AssertIsInRange(double target, double val, double range)
         {
             double r = Math.Abs(val - target);
-            if (r < range)
-                return;
-
-            throw new ArgumentOutOfRangeException("target");
+            Assert.IsTrue(r <= range);
         }
     }
 }

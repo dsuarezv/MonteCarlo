@@ -34,8 +34,11 @@ namespace MonteCarlo
         {
             mItems = new double[initialSize];
         }
-
-
+           
+        public Distribution(double[] values)
+        {
+            mItems = values;
+        }
 
         public double GetMean()
         {
@@ -114,6 +117,9 @@ namespace MonteCarlo
             var range = max - min;
             var result = new int[numDivisions];
 
+            if (range == 0)
+                range = 1;
+
             for (int i = 0; i < items.Length; ++i)
             {
                 var val = items[i] - min;
@@ -182,11 +188,12 @@ namespace MonteCarlo
         {
             var result = new Distribution(size);
 
-            for (int i = 0; i < DefaultSize; ++i) result[i] = value;
+            for (int i = 0; i < size; ++i) result[i] = value;
 
             return result;
         }
 
+       
         private double GetRandomGaussian()
         {
             return Math.Cos(2 * Math.PI * mRandom.NextDouble()) * Math.Sqrt(-2 * Math.Log(mRandom.NextDouble()));
