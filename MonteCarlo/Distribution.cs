@@ -106,12 +106,12 @@ namespace MonteCarlo
             return result;
         }
 
-        public int[] GetDistribution(int numDivisions)
+        public int[] GetHistogram(int numDivisions)
         {
-            return GetDistribution(numDivisions, mItems);
+            return GetHistogram(numDivisions, mItems);
         }
 
-        public static int[] GetDistribution(int numDivisions, double[] items)
+        public static int[] GetHistogram(int numDivisions, double[] items)
         {
             double min, max, mean = GetMean(out min, out max, items);
             var range = max - min;

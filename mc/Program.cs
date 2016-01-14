@@ -25,7 +25,7 @@ namespace mc
 
         private static void PrintDistroChart(double[] items, int numDivisions = 25, int maxColumns = 80)
         {
-            var distro = Distribution.GetDistribution(numDivisions, items);
+            var distro = Distribution.GetHistogram(numDivisions, items);
 
             int max = 0;
             foreach (var i in distro)
