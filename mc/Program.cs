@@ -18,7 +18,7 @@ namespace mc
             model.Solve();
 
             Console.WriteLine("Result:");
-            PrintDistroChart(op1.Output.RawItems, 20, 40);
+            PrintDistroChart(op1.Output.RawItems);
         }
 
 
@@ -27,14 +27,9 @@ namespace mc
         {
             var distro = Distribution.GetHistogram(numDivisions, items);
 
-            int max = 0;
-            foreach (var i in distro)
-                if (i > max)
-                    max = i;
-            
             foreach (var i in distro)
             {
-                int val = (int)((double)i / (double)max * (double)maxColumns);
+                int val = (int)(i * maxColumns);
 
                 for (int j = 0; j < val; ++j)
                     Console.Write('=');

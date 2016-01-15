@@ -52,7 +52,7 @@ namespace MonteCarloTests
         public void DistDistribution()
         {
             var d1 = Distribution.InitGaussian(10, 0.5);
-            var dist = d1.GetHistogram(50);
+            var dist = d1.GetHistogramTotals(50);
 
             return;
         }

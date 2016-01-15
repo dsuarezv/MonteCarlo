@@ -106,12 +106,12 @@ namespace MonteCarlo
             return result;
         }
 
-        public int[] GetHistogram(int numDivisions)
+        public int[] GetHistogramTotals(int numDivisions)
         {
-            return GetHistogram(numDivisions, mItems);
+            return GetHistogramTotals(numDivisions, mItems);
         }
 
-        public static int[] GetHistogram(int numDivisions, double[] items)
+        public static int[] GetHistogramTotals(int numDivisions, double[] items)
         {
             double min, max, mean = GetMean(out min, out max, items);
             var range = max - min;
@@ -128,6 +128,24 @@ namespace MonteCarlo
                     idx = result.Length - 1;
 
                 result[idx]++;
+            }
+
+            return result;
+        }
+
+        public double[] GetHistogram(int numDivisions)
+        {
+            return GetHistogram(numDivisions, mItems);
+        }
+
+        public static double[] GetHistogram(int numDivisions, double[] items)
+        {
+            var histogram = GetHistogramTotals(numDivisions, items);
+            var result = new double[numDivisions];
+
+            for (int i = 0; i < histogram.Length; ++i)
+            {
+                result[i] = (double)histogram[i] / (double)items.Length;
             }
 
             return result;
